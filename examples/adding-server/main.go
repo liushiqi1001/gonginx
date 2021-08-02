@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/tufanbarisyildirim/gonginx"
-	"github.com/tufanbarisyildirim/gonginx/parser"
+	"github.com/liushiqi1001/gonginx"
+	"github.com/liushiqi1001/gonginx/parser"
 )
 
 func main() {
