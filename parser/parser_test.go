@@ -3,8 +3,8 @@ package parser
 import (
 	"testing"
 
-	"github.com/tufanbarisyildirim/gonginx"
-	"github.com/tufanbarisyildirim/gonginx/parser/token"
+	"github.com/liushiqi1001/gonginx"
+	"github.com/liushiqi1001/gonginx/parser/token"
 	"gotest.tools/v3/assert"
 )
 
@@ -29,6 +29,15 @@ func TestParser_CurrFollow(t *testing.T) {
 //	_, ok := c.Directives[0].(gonginx.IncludeDirective) //we expect the first statement to be an include
 //	assert.Assert(t, ok)
 //}
+
+func TestReadConfContent(t *testing.T) {
+	content, err := ReadConfContent("/Users/shiqi/go/src/github.com/gonginx", "nginx.conf")
+	if err != nil {
+		t.Error(err)
+		t.Fail()
+	}
+	t.Log(content)
+}
 
 func TestParser_UnendedInclude(t *testing.T) {
 	defer func() {

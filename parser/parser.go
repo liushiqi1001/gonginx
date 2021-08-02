@@ -3,10 +3,12 @@ package parser
 import (
 	"bufio"
 	"fmt"
+	"io/ioutil"
 	"os"
+	"strings"
 
-	"github.com/tufanbarisyildirim/gonginx"
-	"github.com/tufanbarisyildirim/gonginx/parser/token"
+	"github.com/liushiqi1001/gonginx"
+	"github.com/liushiqi1001/gonginx/parser/token"
 )
 
 //Parser is an nginx config parser
@@ -22,6 +24,24 @@ type Parser struct {
 //NewStringParser parses nginx conf from string
 func NewStringParser(str string) *Parser {
 	return NewParserFromLexer(lex(str))
+}
+
+// ReadConfContent read config content
+func ReadConfContent(absPath, fileName string) (string, error) {
+	fName := strings.TrimRight(absPath, string(os.PathSeparator)) + string(os.PathSeparator) + fileName
+
+	fp, err := os.Open(fName)
+	if err != nil {
+		return "", err
+	}
+
+	conf, err := ioutil.ReadAll(fp)
+	if err != nil {
+		return "", err
+	}
+
+	return string(conf), nil
+
 }
 
 //NewParser create new parser
